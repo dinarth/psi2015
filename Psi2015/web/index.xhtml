@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de Joia </title>
+    </h:head>
+    <h:body>
+       
+        <center>
+            <h:form id="formA">
+                Cadastro de Joia<br/>
+                <p:panelGrid columns="2">
+                     Item:<p:inputText id="itemTxt" value="#{joiaBean.joia.nuItem}"/>
+                    Lote:<p:inputText id="loteTxt" value="#{joiaBean.joia.nuLote}"/>
+                    Peso:<p:inputText id="pesoTxt" value="#{joiaBean.joia.nuPeso}"/>
+                    Valor:<p:inputText id="valorTxt" value="#{joiaBean.joia.nuValor}"/>
+                    Tipo Objeto:
+                    
+                    <p:selectOneMenu id="tipoTxt" value="#{joiaBean.joia.nuTipoObjeto}" style="width:125px">
+            <f:selectItem itemLabel="Pulseira" itemValue="1" />
+            <f:selectItem itemLabel="Anel" itemValue="2" />
+        </p:selectOneMenu>
+                    
+                    Descrição:<p:inputText id="descricaoTxt" value="#{joiaBean.joia.dsDescricao}"/>
+                    Observação:<p:inputText id="observacaoTxt" value="#{joiaBean.joia.dsObservacao}"/>
+                    <h:inputHidden/>
+                    <p:commandButton value="Cadastrar" actionListener="#{joiaBean.adicionarJoia}" update="@all"  />
+                </p:panelGrid>
+            </h:form>
+            <br/>
+            
+<p:dataTable value="#{joiaBean.listarJoia()}" var="data" rows="10" paginator="true" id="table">
+                <p:column>
+                    <f:facet name="header">
+                        ITEM
+                    </f:facet>
+                    <h:outputText value="#{data.nuItem}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        LOTE
+                    </f:facet>
+                    <h:outputText value="#{data.nuLote}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        PESO
+                    </f:facet>
+                    <h:outputText value="#{data.nuPeso}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        VALOR
+                    </f:facet>
+                    <h:outputText value="#{data.nuValor}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        DESCRIÇÃO
+                    </f:facet>
+                    <h:outputText value="#{data.dsDescricao}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        OBSERVAÇÃO
+                    </f:facet>
+                    <h:outputText value="#{data.dsObservacao}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        AÇÕES
+                    </f:facet>
+                    <h:form>
+                        <p:growl id="message" showDetail="true" />
+                        <p:commandButton value="Remover" actionListener="#{joiaBean.removerJoia(data)}" update=":table" >
+                            <p:confirm header="Confirmation" message="Tem certeza que deseja remover este registro?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />   
+
+                        </p:confirmDialog>
+
+                        
+                        <p:commandButton value="Editar" action="#{joiaBean.carregarJoia(data)}"/>
+                    </h:form>
+                </p:column>
+            </p:dataTable>
+
+        </center>
+    </h:body>
+</html>
+
