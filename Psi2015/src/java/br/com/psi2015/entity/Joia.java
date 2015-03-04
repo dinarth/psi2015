@@ -11,38 +11,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="joia")
-@XmlRootElement
 public class Joia implements Serializable {
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "nu_Item")
-    private int nuItem;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "nu_Lote")
-    private int nuLote;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "nu_Peso")
-    private int nuPeso;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "nu_Valor")
-    private int nuValor;
-    @JoinColumn(name = "id_TipoObjeto", referencedColumnName = "id_TipoObjeto")
-    @ManyToOne(optional = false)
-    private Tipoobjeto idTipoObjeto;
     
     private static final long serialVersionUID = 1L;
+    
     
     @Id
     @GeneratedValue
     @Column(name="id_Joia", nullable = false)
     private Integer idJoia;
+    @Column(name = "nu_Item")
+    private int nuItem;
+    @Column(name = "nu_Lote")
+    private int nuLote;
+    @Column(name = "nu_Peso")
+    private int nuPeso;
+    @Column(name = "nu_Valor")
+    private int nuValor;
     @Column(name="ds_Descricao", nullable = false)
     private String dsDescricao;
     @Column(name="ds_Observacao", nullable = false)
@@ -165,19 +153,5 @@ public class Joia implements Serializable {
     }
 
 
-    public Tipoobjeto getIdTipoObjeto() {
-        return idTipoObjeto;
-    }
-
-    public void setIdTipoObjeto(Tipoobjeto idTipoObjeto) {
-        this.idTipoObjeto = idTipoObjeto;
-    }
-    
-    
-    
-
-    
-
-    
     
 }

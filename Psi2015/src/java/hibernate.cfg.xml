@@ -7,6 +7,6 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/psi?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
-    <mapping class="br.com.cadastro.entity.Joia"/>
+    <mapping class="br.com.psi2015.entity.Joia"/>
   </session-factory>
 </hibernate-configuration>

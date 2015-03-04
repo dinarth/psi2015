@@ -20,7 +20,7 @@ public class JoiaDAO {
             sessao = HibernateUtil.getSessionFactory().openSession();
 
             Criteria cri = sessao.createCriteria(Joia.class);
-     //       cri.addOrder(Order.asc("nome"));
+            cri.addOrder(Order.asc("nome"));
             this.list = cri.list();
 
         } catch (Exception e) {
